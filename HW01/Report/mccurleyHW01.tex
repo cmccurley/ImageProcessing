@@ -1,0 +1,63 @@
+\documentclass{article}[12 pt]
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{appendix}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{shortvrb}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{hyperref}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\graphicspath{{"K:/University of Florida/Classes/2018_08_Woodard_Image_Processing/Homework/HW01/"}}
+\geometry{margin=1 in}
+
+\newcommand{\smallvskip}{\vspace{5 pt}}
+\newcommand{\medvskip}{\vspace{30 pt}}
+\newcommand{\bigvskip}{\vspace{100 pt}}
+\newcommand{\tR}{\mathtt{R}}
+
+
+
+
+\begin{document}
+	
+\begin{center}
+	\textbf{\Large Connor McCurley} \\
+	EEE 6512 \qquad \textbf{\large Homework 1 Due August 23, 2018} \qquad Fall 2018 
+\end{center}
+
+
+This document demonstrates the interweaving of two images consisting of only the odd and even rows of a full image, respectively.  Additionally, the even rows were corrupted.  As demonstrated in figure \ref{fig:images}, the original image was reconstruced by first un-corrupting the even rows by adding the means of their respective odd rows.  The odd row and uneven row images were then interweaved to obtain the original image. \\
+ 
+ \noindent Accompanying code is provided in $mccurleyHW01.mat$
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{"hw01_images"}
+		\caption{Top Left: Odd Rows of original image Top Right: Corrupted, even rows of original image. Bottom Left: Original, corrupted image Bottom Right: Original, un-corrupted image}
+		\label{fig:images}
+	\end{figure}
+\end{center}
+
+
+
+
+
+
+
+
+
+\end{document}
