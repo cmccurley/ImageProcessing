@@ -20,11 +20,11 @@ swan = imread('swan.pgm');
 tools = imread('tools.pgm');
 
 % =========================== %Set Parameters =============================
-quant_num = 8;
+quant_num = 128;
 
 runHist = 0;
 runHistEq = 0;
-runQuant = 0;
+runQuant = 1;
 
 % =========================== %Run functions ==============================
 
