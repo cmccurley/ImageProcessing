@@ -246,9 +246,12 @@ The above images demonstrate the outputs of the \emph{myhisteq} function require
 \vspace{5mm}
 \noindent
 The quantization function implemented for this assignment works as described in algorithm \ref{alg:quant}. \\
+\noindent
+In words, the space of possible intensities is divided into \textit{quantNum} regions.  Each pixel's intensity is classified into one of the regions.  Then each pixel's quantized value is set as the middle intensity value in its corresponding region.\\
  %===================================================================================================================
- \vspace{10mm}
- \noindent Accompanying code is provided in $mccurleyHW02.mat$
+ 
+ \noindent 
+ Accompanying code is provided in $mccurleyHW02.mat$
 
 
 \end{document}
