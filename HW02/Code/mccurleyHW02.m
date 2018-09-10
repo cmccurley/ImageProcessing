@@ -20,21 +20,31 @@ swan = imread('swan.pgm');
 tools = imread('tools.pgm');
 
 % =========================== %Set Parameters =============================
+quant_num = 8;
 
+runHist = 0;
+runHistEq = 0;
+runQuant = 0;
 
 % =========================== %Run functions ==============================
 
-% %Compute normalized histogram
-% [flowerHist] = myhist(flower,'Flowers');
-% [swanHist] = myhist(swan,'Swan');
-% [toolsHist] = myhist(tools,'Tools');
+if (runHist)
+    %Compute normalized histogram
+    [flowerHist] = myhist(flower,'Flowers');
+    [swanHist] = myhist(swan,'Swan');
+    [toolsHist] = myhist(tools,'Tools');
+end
 
-% %Compute equalized histogram
-% [flowerHistEq] = myhisteq(flower,'Flowers');
-% [swanHistEq] = myhisteq(swan,'Swan');
-% [toolsHistEq] = myhisteq(tools,'Tools');
+if (runHistEq)
+    %Compute equalized histogram
+    [flowerHistEq] = myhisteq(flower,'Flowers');
+    [swanHistEq] = myhisteq(swan,'Swan');
+    [toolsHistEq] = myhisteq(tools,'Tools');
+end
 
-%Compute quantized image
-[flowerQuant] = myquantize(flower, quant_num, 'Flowers');
-% [swanQuant] = myquantize(swan, quant_num, 'Swan');
-% [toolsQuant] = myquantize(tools, quant_num, 'Tools');
+if (runQuant)
+    %Compute quantized image
+    [flowerQuant] = myquantize(flower, quant_num, 'Flowers');
+    [swanQuant] = myquantize(swan, quant_num, 'Swan');
+    [toolsQuant] = myquantize(tools, quant_num, 'Tools');
+end
