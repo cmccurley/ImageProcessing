@@ -5,7 +5,9 @@ function [normHist] = myhist(data,dataSet)
     *  Name:  Connor McCurley
     *  Date:  09/09/2018
     *  Course: EEE 6512 Image Processing and Computer Vision
-    *  Desc:  
+    *  Desc:  Takes an intensity image 'data' and the data set name
+              'dataSet' (optional), and returns a vector of the image's
+              normalized intensity histogram
 **********************************************************************
 %} 
 

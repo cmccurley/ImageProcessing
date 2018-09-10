@@ -43,7 +43,7 @@
 
 \subsection*{2.5}
 
-Since $\lambda = \frac{c}{\nu}$ , then  $\lambda = \frac{c}{60Hz}$ = $\frac{2.998e^8 m/s}{60Hz}$ = $4.997e^8m$ Therefore, \[ \boxed{\lambda = 4.997e^5 km} \]
+Since $\lambda = \frac{c}{\nu}$ , then  $\lambda = \frac{c}{60Hz}$ = $\frac{2.998 \cdot 10^8 m/s}{60Hz}$ = $4.997 \cdot 10^8m$ Therefore, \[ \boxed{\lambda = 4.997 \cdot 10^5 km} \]
 
 \subsection*{2.10}
 I can imaging solving the problem presented in 1 of 2 ways (although I'm sure there are many more):
@@ -175,6 +175,7 @@ From the image histograms, the following inferences can be made about each image
 \caption{Left to right columns: Original 8-bit Intensity Images,  Normalized Histogram of Image Intensities, Equalization Transformation Function, Equalized Intensity Image, Equalized Normalized Intensity Histogram}
 \end{figure}
 
+\noindent
 The above images demonstrate the outputs of the \emph{myhisteq} function required for this assignment.  The differences between the original intensity images and the equalized images transformed by the shown equalization functions can be observed visually, as well as quantitatively through the normalized image intensity histograms.
 
 \newpage
@@ -234,14 +235,16 @@ The above images demonstrate the outputs of the \emph{myhisteq} function require
 \State $f \gets \textit{pixel intensity}$
 \State $i \gets \textit{pixel index}$
 \State $\textit{Q} \gets \textit{length of quantization intervals} = \frac{255}{quantNum}$
-\For{numPixels}
-\State $\textit{Index of quantized value} = Q_i(f) \gets \frac{f}{Q}$
+\For{i in numPixels}
+\State $\textit{Index of quantized value}, Q_i(f_i) \gets \textit{floor}(\frac{f_i}{Q})$
+\State $\textit{Quantized value}, Q_i(f_i) \gets Q_i(f_i)Q+\frac{Q}{2}$
 \EndFor
 \EndProcedure
 \Return{Quantized Image}
 \end{algorithmic}
 \end{algorithm}
 \vspace{5mm}
+\noindent
 The quantization function implemented for this assignment works as described in algorithm \ref{alg:quant}. \\
  %===================================================================================================================
  \vspace{10mm}

@@ -5,7 +5,9 @@ function [quantData] = myquantize(data,quant_num,dataSet)
     *  Name:  Connor McCurley
     *  Date:  09/09/2018
     *  Course: EEE 6512 Image Processing and Computer Vision
-    *  Desc:  
+    *  Desc:  Take in an intensity image 'data' and display it's 
+              image quantized to 'quant_num' intensity levels.  
+              Return: quantData as the matrix of the quantized image
 **********************************************************************
 %} 
 data = double(data);
