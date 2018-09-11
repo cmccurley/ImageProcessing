@@ -26,9 +26,9 @@ tools = imread('tools.pgm');
 % =========================== %Set Parameters =============================
 quant_num = 128;
 
-runHist = 1;
+runHist = 0;
 runHistEq = 1;
-runQuant = 1;
+runQuant = 0;
 
 % =========================== %Run functions ==============================
 

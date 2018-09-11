@@ -53,7 +53,7 @@ end
 %Find equalized histogram values
 eqHistVals = zeros(numBins,1);
 for bin = 1:numBins
-    eqHistVals(bin) = (bin-1)*sum(normHist(1:bin),1);
+    eqHistVals(bin) = (numBins-1)*sum(normHist(1:bin),1);
 end
 
 %Plot transformation function
