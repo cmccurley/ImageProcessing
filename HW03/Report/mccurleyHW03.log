@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2018.9.27)  27 SEP 2018 19:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2018.9.28)  28 SEP 2018 10:43
 entering extended mode
 **//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
 essing/HW03/Report/mccurleyHW03.tex
@@ -679,24 +679,150 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 zare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProcessing/HW
 03/Report/Images/SplitHist.png> <//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Prof
 ile/cmccurley/Desktop/ImageProcessing/HW03/Report/Images/CheckerHist.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 277.
- [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 277.
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--102
+
+ []
+
+<Images/Noisy.jpg, id=29, 562.1pt x 421.575pt>
+File: Images/Noisy.jpg Graphic file (type jpg)
+ <use Images/Noisy.jpg>
+Package pdftex.def Info: Images/Noisy.jpg used on input line 109.
+(pdftex.def)             Requested size: 234.8775pt x 176.15327pt.
+ [2 <./Images/Noisy.jpg>]
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"box3.jpg, id=42, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"box3.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"box3.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"box3.jpg used on input line 
+122.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"box5.jpg, id=43, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"box5.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"box5.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"box5.jpg used on input line 
+125.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"box7.jpg, id=44, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"box7.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"box7.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"box7.jpg used on input line 
+129.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"box9.jpg, id=45, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"box9.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"box9.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"box9.jpg used on input line 
+132.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"median3.jpg, id=48, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"median3.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"median3.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"median3.jpg used on input li
+ne 142.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"median5.jpg, id=49, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"median5.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"median5.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"median5.jpg used on input li
+ne 145.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"median7.jpg, id=50, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"median7.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"median7.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"median7.jpg used on input li
+ne 149.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+
+<"//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProc
+essing/HW03/Report/Images/"median9.jpg, id=51, 562.1pt x 421.575pt>
+File: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Imag
+eProcessing/HW03/Report/Images/"median9.jpg Graphic file (type jpg)
+
+<use "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/Image
+Processing/HW03/Report/Images/"median9.jpg>
+Package pdftex.def Info: "//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmc
+curley/Desktop/ImageProcessing/HW03/Report/Images/"median9.jpg used on input li
+ne 152.
+(pdftex.def)             Requested size: 142.26378pt x 106.69289pt.
+ [3 <//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageP
+rocessing/HW03/Report/Images/box3.jpg> <//ece-azare-nas1.ad.ufl.edu/ece-azare-n
+as/Profile/cmccurley/Desktop/ImageProcessing/HW03/Report/Images/box5.jpg> <//ec
+e-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProcessing
+/HW03/Report/Images/box7.jpg> <//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profil
+e/cmccurley/Desktop/ImageProcessing/HW03/Report/Images/box9.jpg> <//ece-azare-n
+as1.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProcessing/HW03/Rep
+ort/Images/median3.jpg> <//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmcc
+urley/Desktop/ImageProcessing/HW03/Report/Images/median5.jpg> <//ece-azare-nas1
+.ad.ufl.edu/ece-azare-nas/Profile/cmccurley/Desktop/ImageProcessing/HW03/Report
+/Images/median7.jpg> <//ece-azare-nas1.ad.ufl.edu/ece-azare-nas/Profile/cmccurl
+ey/Desktop/ImageProcessing/HW03/Report/Images/median9.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
+[4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
  (mccurleyHW03.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 277.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 277.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
 Package rerunfilecheck Info: File `mccurleyHW03.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 277.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 10419 strings out of 493308
- 161349 string characters out of 3127343
- 266860 words of memory out of 3000000
- 13789 multiletter control sequences out of 15000+200000
+ 10483 strings out of 493308
+ 165541 string characters out of 3127343
+ 267302 words of memory out of 3000000
+ 13829 multiletter control sequences out of 15000+200000
  9605 words of font info for 36 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,10n,49p,604b,434s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,13n,49p,1180b,434s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/cmccurley/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmbx12.pfb><C:/Users/cmccurley/AppData/Local/Programs/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmex10.pfb><C:/Users/cmccurley/AppData/Local/Programs/
@@ -707,9 +833,9 @@ b10.pfb><C:/Users/cmccurley/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmr10.pfb><C:/Users/cmccurley/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/cmccurley/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on mccurleyHW03.pdf (2 pages, 102859 bytes).
+Output written on mccurleyHW03.pdf (4 pages, 384183 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 103 PDF objects out of 1000 (max. 8388607)
+ 27 named destinations out of 1000 (max. 500000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

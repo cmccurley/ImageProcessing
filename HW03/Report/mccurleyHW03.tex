@@ -27,7 +27,7 @@
 \geometry{margin=1 in}
 
 \newcommand{\smallvskip}{\vspace{5 pt}}
-\newcommand{\medvskip}{\vspace{30 pt}}
+\newcommand{\medvskip}{\vspace{50 pt}}
 \newcommand{\bigvskip}{\vspace{100 pt}}
 \newcommand{\tR}{\mathtt{R}}
 
@@ -81,197 +81,125 @@
 
 
 \subsection*{3.48}
-In this situation, the results would be dependent on the order the filters are applied. The effects of the second filter would be diminished by the appliaction of the first.  i.e. If blurring is done, then sharpening will not necessarily have the same effect as when sharpening before blurring is performed.
+In this situation, the results would be dependent on the order the filters are applied. The effects of the second filter would be diminished by the application of the first.  i.e. If blurring is done, then sharpening will not necessarily have the same effect as when sharpening before blurring is performed.
 
 
 \subsection*{3.55}
 \begin{itemize}
-\item (a) The Laplacian kernels are not seperable.  The examples provided in the book have $rank=2$.
+\item (a) The Laplacian kernels are not separable.  The examples provided in the book have $rank=2$.
 
-\item (b)  The Roberts cross-gradient kernels are not seperable.  The examples provided in the book have $rank=2$.
+\item (b)  The Roberts cross-gradient kernels are not separable.  The examples provided in the book have $rank=2$.
 
-\item (c) The Sobel kernels shown in the book are seperable as they demonstrated $rank=1$.  Examples of the $\bm{v}$ and $\bm{w}$ whose outer product can reproduce the example kernels are $\bm{v} = [-1, 0, 1]^T$ and $\bm{w} = [1, 2, 1]^T$.  The Sobel kernel shown in Fig. 3.56(d) can be reconstructed by $\bm{v}\bm{w}^T$ and (e) by $\bm{w}\bm{v}^T$
+\item (c) The Sobel kernels shown in the book are separable as they demonstrated $rank=1$.  Examples of the $\bm{v}$ and $\bm{w}$ whose outer product can reproduce the example kernels are $\bm{v} = [-1, 0, 1]^T$ and $\bm{w} = [1, 2, 1]^T$.  The Sobel kernel shown in Fig. 3.56(d) can be reconstructed by $\bm{v}\bm{w}^T$ and (e) by $\bm{w}\bm{v}^T$
 \end{itemize}
 
 
 \section*{Part II MATLAB Programming}
+For this assignment, I implemented a function called myfilt() which took as input, an NxN uint8 image, a cell containing the name of the filter to employ i.e. {'Box'} or {'Median'}, and an odd integer giving the size of the filter kernel, i.e. 9 gives a 9x9 kernel. The function then returned an NxN uint8 version of the filtered image.  \\
+
+\noindent
+I first zero padded the original image.  Visually, this had the effect of darkening the image's edges, which was expected.  I separated the padded image into a (filterSize)x(filterSize)x(NumberofPatches) matrix, where NumberofPatches was the total number of filtering windows that would need to be applied by sliding the kernel over the image.  Within each (filterSize)x(filterSize) image patch, I could perform either a median or averaging operation over all of the pixels in the region, and save the single resulting value into an array called filteredImage.  Once this was completed, I reshaped the filteredImage vector into a matrix and recast it as a uint8. \\
+
+\noindent
+The results of the filtering a noisy image (figure \ref{noise}) for various kernel sizes using both a box (fig. \ref{box}) and a median (fig. \ref{median}) filter are shown below.  Discussion of results follows.
+
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width = 0.5\textwidth]{Images/Noisy.jpg}
+		\caption{Image of a bird corrupted by noise}
+		\label{noise}
+	\end{figure}
+\end{center}
+
+
+
+\begin{figure}[h!]
+\captionsetup[subfloat]{labelformat=empty}
+\centering
+\subfloat[]{
+  \includegraphics[width=50mm]{box3.jpg}
+}
+\subfloat[]{
+  \includegraphics[width=50mm]{box5.jpg}
+}
+\hspace{0mm}
+\subfloat[]{
+  \includegraphics[width=50mm]{box7.jpg}
+}
+\subfloat[]{
+  \includegraphics[width=50mm]{box9.jpg}
+}
+\caption{Box filtered images of the noisy bird image shown in fig. \ref{noise}.  Kernel sizes are top left: 3x3, top right: 5x5, bottom left: 7x7, and bottom right: 9x9}
+\label{box}
+\end{figure}
+
+\begin{figure}[h!]
+\captionsetup[subfloat]{labelformat=empty}
+\centering
+\subfloat[]{
+  \includegraphics[width=50mm]{median3.jpg}
+}
+\subfloat[]{
+  \includegraphics[width=50mm]{median5.jpg}
+}
+\hspace{0mm}
+\subfloat[]{
+  \includegraphics[width=50mm]{median7.jpg}
+}
+\subfloat[]{
+  \includegraphics[width=50mm]{median9.jpg}
+}
+\caption{Median filtered images of the noisy bird image shown in fig. \ref{noise}.  Kernel sizes are top left: 3x3, top right: 5x5, bottom left: 7x7, and bottom right: 9x9}
+\label{median}
+\end{figure}
+
+\noindent
+From visual inspection of the filtered images, a few things can be observed.  First, the blurring effect of the filters is increased with increases in the kernel size, i.e. the 3x3 provides less blurring than the 9x9.  Next, for all kernel sizes, the averaging filter seems to do a better job of removing noise.  However, it also blurs the features more, therefore, reducing contrast.  A observed in the 7x7 and 9x9 filtered images, the median filter preserves contrast better than the box filter.  This aspect is especially noticed in the high intensity values on the head and breast of the bird. Additionally, the box filter is more affected by the zero padding.  This can be seen around the edges of the image, where pixel values were darkened.  A few more qualities can be noticed in the images.  One, the boundaries provided by the box filter are fairly rough or "jagged".  Two, the median filter's boundaries are more sharp, but overall, there is more noise in the images.  These two properties are inherent of the filter types and were, therefore, expected.
 
 \section*{Part III Extra Credit}
 
 
+\noindent
+From the description of the kernels, the Gaussian kernel can be constructed as 
+\begin{align*}
+\bm{G} = 
+\begin{bmatrix}
+    0.025 & 0.108 & 0.025 \\
+    0.108 & 0.469 & 0.108 \\
+    0.025 & 0.108 & 0.025     
+\end{bmatrix}
+\end{align*}
 
-%===================================================================================================================
-% \newpage
-% \section*{Part II Matlab Programming}
+and the Differentiating kernel can be defined as the outer product of the 1D kernels, providing 
+\begin{align*}
+\bm{D} = 
+\begin{bmatrix}
+    0.25 & 0 & -0.25 \\
+    0 & 0 & 0 \\
+    -0.25 & 0 & 0.25
+\end{bmatrix}
+\end{align*}
 
-% \subsection*{myhist}
+The convolution of these two kernels yields 
 
-% \begin{figure}[h!]
-% \captionsetup[subfloat]{labelformat=empty}
-% \centering
-% \subfloat[]{
-%   \includegraphics[width=55mm]{flowersIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=55mm]{flowersNormHist.jpg}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=55mm]{swanIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=55mm]{swanNormHist.jpg}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=55mm]{toolsIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=55mm]{toolsNormHist.jpg}
-% }
-% \caption{Left Column: Original 8-bit Intensity Images Right Column: Normalized Histogram of Image Intensities}
-% \end{figure}
+\begin{align*}
+\bm{G}*\bm{D} = 
+\begin{bmatrix}
+    0.0063 & 0 & -0.0063 \\
+    0 & 0 & 0 \\
+    -0.0063 & 0 & 0.0063
+\end{bmatrix}
+\end{align*}
 
-% From the image histograms, the following inferences can be made about each image: 
-% \begin{itemize}
-% \item Flowers: Demonstrates low contrast, favors darker intensities
-% \item Swan: Shows more high-contrast characteristics than the other images
-% \item Tools: Exhibits low-contrast tendencies, favors lighter values
-% \end{itemize}
-
-% \newpage
-% \subsection*{myhisteq}
-
-% \begin{figure}[h!]
-% \captionsetup[subfloat]{labelformat=empty}
-% \centering
-% \subfloat[]{
-%   \includegraphics[width=35mm]{flowersIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{flowersNormHist.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{flowersEqTrans.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{flowersIntensityEq.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{flowersNormHistEq.jpg}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=35mm]{swanIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{swanNormHist.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{swanEqTrans.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{swanIntensityEq.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{swanNormHistEq.jpg}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=35mm]{toolsIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{toolsNormHist.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{toolsEqTrans.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{toolsIntensityEq.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=35mm]{toolsNormHistEq.jpg}
-% }
-% \caption{Left to right columns: Original 8-bit Intensity Images,  Normalized Histogram of Image Intensities, Equalization Transformation Function, Equalized Intensity Image, Equalized Normalized Intensity Histogram}
-% \end{figure}
-
-% \noindent
-% The above images demonstrate the outputs of the \emph{myhisteq} function required for this assignment.  The differences between the original intensity images and the equalized images transformed by the shown equalization functions can be observed visually, as well as quantitatively through the normalized image intensity histograms.
-
-% \newpage
-% \subsection*{myquantize}
-% \begin{figure}[h!]
-% \captionsetup[subfloat]{labelformat=empty}
-% \centering
-% \subfloat[]{
-%   \includegraphics[width=40mm]{flowersIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{flowersQuant128.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{flowersQuant32.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{flowersQuant8.jpg}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=40mm]{swanIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{swanQuant128.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{swanQuant32.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{swanQuant8.jpg}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=40mm]{toolsIntensity.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{toolsQuant128.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{toolsQuant32.jpg}
-% }
-% \subfloat[]{
-%   \includegraphics[width=40mm]{toolsQuant8.jpg}
-% }
-% \caption{From left to right: Original 8-bit Intensity image, Image quantized to 128 levels, Image quantized to 32 levels, Image quantized to 8 levels}
-% \end{figure}
+\noindent
+This kernel is undesirable due to the fact that it's sharpening effect is greatly diminished.  Applying smoothing reduces the contrast in an image and blurs the features that we would like to enhance by sharpening.  So if we blur before sharpening, we are trying to enhance boundaries that have already been stretched out, providing visually unappealing results. \\
 
 
 
-
-% \begin{algorithm}[H]
-% \caption{Quantization}\label{alg:quant}
-% \begin{algorithmic}[1]
-% \Procedure{Quantization}{}
-% \State $\textit{quantNum} \gets \text{number of intensity levels}$
-% \State $f \gets \textit{pixel intensity}$
-% \State $i \gets \textit{pixel index}$
-% \State $\textit{Q} \gets \textit{length of quantization intervals} = \frac{255}{quantNum}$
-% \For{i in numPixels}
-% \State $\textit{Index of quantized value}, Q_i(f_i) \gets \textit{floor}(\frac{f_i}{Q})$
-% \State $\textit{Quantized value}, Q_i(f_i) \gets Q_i(f_i)Q+\frac{Q}{2}$
-% \EndFor
-% \EndProcedure
-% \Return{Quantized Image}
-% \end{algorithmic}
-% \end{algorithm}
-% \vspace{5mm}
-% \noindent
-% The quantization function implemented for this assignment works as described in algorithm \ref{alg:quant}. \\
-% \noindent
-% In words, the space of possible intensities is divided into \textit{quantNum} regions.  Each pixel's intensity is classified into one of the regions.  Then each pixel's quantized value is set as the middle intensity value in its corresponding region.\\
-%  %===================================================================================================================
  
-%  \noindent 
-%  Accompanying code is provided in $mccurleyHW02.mat$
+ \noindent 
+ Accompanying code is provided in $mccurleyHW03.m$ and $myfilt.m$
 
 
 \end{document}
