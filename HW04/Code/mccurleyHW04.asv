@@ -1,0 +1,64 @@
+%{ 
+***********************************************************************
+    *  File:  mccurleyHW03.m
+    *  Name:  Connor McCurley
+    *  Date:  09/26/2018
+    *  Course: EEE 6512 Image Processing and Computer Vision
+    *  Desc:  This script allows the user to run either a Median or Box
+              filter with varying sizes on a noisy image as required
+              by HW03.
+**********************************************************************
+%} 
+
+% ======================= %Clear Workspace ================================
+clear all;
+close all;
+clc;
+
+% =========================== %Load data ==================================
+interference = imread('interfere.pgm'); 
+flower = imread('flower.pgm'); 
+swan = imread('swan.pgm'); 
+tools = imread('tools.pgm'); 
+scene = imread('scene.ppm'); 
+
+% =========================== %Set Parameters =============================
+runInterferenceRemoval = 0;
+ru
+
+% 
+% figure();
+% colormap(gray);
+% imagesc(flower);
+% colorbar;
+% title('8-bit Grayscale Image of Flowers');
+% 
+% figure();
+% colormap(gray);
+% imagesc(swan);
+% colorbar;
+% title('8-bit Grayscale Image of a Swan');
+% 
+% figure();
+% colormap(gray);
+% imagesc(tools);
+% colorbar;
+% title('8-bit Grayscale Image of Tools');
+% 
+% figure();
+% imshow(scene);
+% title('Color Image of a Scene');
+
+
+% =========================== %Run functions ==============================
+if(runInterferenceRemoval)
+%Remove interference from corrupted image
+[denoisedImage] = removeInterference(interference);
+
+% %apply filters over range of filter sizes
+% for type = 1:size(filtType,2)
+%     for fsize = 1:size(filtSize,2)
+%         [filtImage] = myfilt(image,filtType(type),filtSize(fsize));
+%     end
+% end
+

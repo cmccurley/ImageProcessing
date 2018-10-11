@@ -1,0 +1,35 @@
+function [pcImages] = pseudoColor(iImages)
+
+%{ 
+%%***********************************************************************
+%    *  File:  pseudoColor.m
+%    *  Name:  Connor McCurley
+%    *  Date:  10/11/2018
+%    *  Course: EEE 6512 Image Processing and Computer Vision
+%    *  Desc:  This function takes in a cell of images and returns their
+%              8-value pseudo-color images
+%    *  Input: image - cell list of NxN uint8 images
+%    * Output: filteredImage - NxN uint8 pseudo-clor image
+%%**********************************************************************
+%} 
+
+colors = {'Black','Brown','Purple','Orange','Yellow','Green','Blue','Red'}
+
+%plot intensity images
+for image = 1:size(iImages,2)
+figure();
+colormap(gray);
+imagesc(iImages{image});
+title('8-bit Intensity Image');
+end
+
+%bin intensity values
+numBins = 8;
+maxVal = (2^numBins)-1;
+numLevelsperBin = (maxVal+1)/numBins;
+
+levels = 0:(2^8)-1;
+levels = reshape(levels,[numLevelsperBin, numBins]);
+levels = levels';
+
+end

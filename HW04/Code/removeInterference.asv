@@ -1,0 +1,54 @@
+function [denoisedImage] = removeInterference(image)
+
+%{ 
+%%***********************************************************************
+%    *  File:  removeInterference.m
+%    *  Name:  Connor McCurley
+%    *  Date:  10/11/2018
+%    *  Course: EEE 6512 Image Processing and Computer Vision
+%    *  Desc:  This function takes an image with frequency interference,
+%              finds the out-of-place components, and adjusts the level
+%              to remove the interference from the image.
+%    *  Input: image - NxN uint8 image
+%    * Output: filteredImage - NxN uint8 denoised image 
+%%**********************************************************************
+%} 
+
+%Transfer image to frequency domain
+% for x = 1:size(image,1)
+%     for y = 1:size(image,2)
+%         image(x,y) = image(x,y)*((-1)^(x+y));
+%     end
+% end
+dftImage = fft2(image);
+% realDFT = real(dftIamge);
+% imagDFT = imag(dftImage);
+magDFT = abs(dftImage);
+phaseDFT = angle(dftImage);
+
+
+%plot DFT
+figure();
+imagesc(magDFT);
+title('Magnitude of DFT for Image with Interference');
+
+%correct image by applying median filter
+denoisedFreqImage = medfilt2(magDFT);
+figure();
+imagesc(abs(denoisedFreqImage));
+title('Magnitude of DFT of the Denoised Image');
+
+%convert back to spatial domain
+denoisedImage = abs((ifft2(dftImage)));
+
+% for x = 1:size(denoisedImage,1)
+%     for y = 1:size(denoisedImage,2)
+%         denoisedImage(x,y) = denoisedImage(x,y)*((-1)^(x+y));
+%     end
+% end
+
+%plot corrected image
+figure();
+imagesc(denoisedImage);
+title('Image with Interference Corrected');
+end
