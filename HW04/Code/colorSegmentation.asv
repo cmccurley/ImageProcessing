@@ -38,25 +38,23 @@ labImage = rgb2lab(scene);
 %==========================================================================
 
 Images = {rgbImage,hsiImage,labImage};
-ImageNames = {'RGB Image', 'HSI Image', 'LAB Image'}; %titles of images
-saveNames = {'segmentedRGB', 'segmentedHSI', 'segmentedLAB'}; %names to save figures as
+ImageNames = {'RGB Image', 'HSI Image', 'LAB Image'};
 
 
 %define discrete colors
 colorNames = ['Purple','Orange','Yellow','Green','Blue','Red'];
 colors = [255,0,255;255,165,0;255,255,0;0,255,0;0,0,255;255,0,0];
 colors = colors./255;
-labelNames = {'Sky','Cloud','Sand','Vegetation','Water','Rock'};
+labelNames = {'Sky','Cloud','Tree','Sand','Water','Rock'};
 
 segmentedImages = {};
 for image = 1:size(Images,2)
-    Images{image} = single(Images{image}); %cast image as a single
-    
+    Images{image} = single(Images{image});
    %define sample regions for each class
    sky1 = Images{image}(86:200,32:208,:);
    sky2 = Images{image}(636:667,307:346,:);
    cloud = Images{image}(32:288,624:721,:);
-   tree = Images{image}(621:712,495:886,:);
+   tree = Images{image}(667:786,706:709,:);
    sand1 = Images{image}(1130:1220,250:442,:);
    sand2 = Images{image}(1180:1200,775:825,:);
    water = Images{image}(769:804,421:474,:);
@@ -68,16 +66,14 @@ for image = 1:size(Images,2)
    
    prototypes = [];
    
-   %take average of class regions to generate class prototypes
+   %take average of class regions
    for mat = 1:size(protMats,2)
        matrix = protMats{mat};
-       matVector = reshape(matrix,[],size(matrix,3));
+       matVector = reshape(matrix,[],3);
        avgVect = mean(matVector);
        prototypes = horzcat(prototypes,avgVect');
    end
    
-   %take distance of each pixel to all of the prototypes and set pixel
-   %label
    labelledImage = zeros(size(Images{image},1),size(Images{image},2));
    for col = 1:size(Images{image},2)
        for row = 1:size(Images{image},1)
@@ -87,21 +83,21 @@ for image = 1:size(Images,2)
        end
    end
    
-segmentedImages{image} = uint8(labelledImage);  %cast image as uint8
-disp('Finished Image');
+segmentedImages{image} = uint8(labelledImage);   
 end
 
 
 
-%plot each segmented image
-for image = 1:size(segmentedImages,2)
+%plot each binned image
+for image = 1:size(labels,2)-2
     figure();
     colormap(colors);
     imagesc(segmentedImages{image});
     title(['Segmented ' ImageNames{image}]);
-    cmap = colormap(colors(size(labels,2)-2)); 
+    cmap = colormap(colors(size(labels,2)-1)); 
     cbh = lcolorbar(labelNames,'fontweight','bold');
-%     saveas(gcf,saveNames{image});
+    saveas(gcf)
+    
 end
 
 

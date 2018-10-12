@@ -15,12 +15,12 @@
 clear all;
 close all;
 clc;
-
+dbstop if error;
 % =========================== %Load data ==================================
-interference = imread('interfere.pgm'); 
-flower = imread('flower.pgm'); 
-swan = imread('swan.pgm'); 
-tools = imread('tools.pgm'); 
+% interference = imread('interfere.pgm'); 
+% flower = imread('flower.pgm'); 
+% swan = imread('swan.pgm'); 
+% tools = imread('tools.pgm'); 
 scene = imread('scene.ppm'); 
 
 % =========================== %Set Parameters =============================
