@@ -52,15 +52,13 @@ title('HSI Image of a Scene');
 %==========================================================================
 
 %================= convert rgb to lab =====================================
-labImage = rgb2lab(image);
+
 
 figure();
 imshow(hsiImage);
 title('LAB Image of a Scene');
 %==========================================================================
-
-
-Images = {rgbImage,hsiImage,labImage};
+pcImages = {};
 
 %define discrete colors
 colorNames = ['Black','Brown','Purple','Orange','Yellow','Green','Blue','Red'];
