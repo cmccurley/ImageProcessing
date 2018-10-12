@@ -9,11 +9,12 @@ function [denoisedImage] = removeInterference(image)
 %    *  Desc:  This function takes an image with frequency interference,
 %              finds the out-of-place components, and adjusts the level
 %              to remove the interference from the image.
-%    *  Input: image - NxN uint8 image
-%    * Output: filteredImage - NxN uint8 denoised image 
+%    *  Input: image - MxN uint8 image
+%    * Output: denoisedImage - MxN uint8 denoised image 
 %%**********************************************************************
 %} 
-sigma = 15;
+
+sigma = 15; %gaussian kernel bandwidth
 
 %Show corrupted image
 figure();
@@ -31,7 +32,7 @@ figure();
 imagesc(H);
 title(['Gaussian Low-Pass Kernel with Sigma: ' num2str(sigma)]);
 
-%plot DFT
+%plot DFT of corrupted image
 figure();
 imagesc(abs(dftImage));
 title('Magnitude of DFT for Image with Interference');

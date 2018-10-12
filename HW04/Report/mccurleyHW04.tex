@@ -43,135 +43,131 @@
 \section*{Part I Questions}
 
 \begin{enumerate}
-\item As seen below, the first component is worked by hand, while the rest were computed through Matlab.
+% \item As seen below, the first component is worked by hand, while the rest were computed through Matlab.
 
-\begin{figure}[h!]
-\captionsetup[subfloat]{labelformat=empty}
-\centering
-\subfloat[]{
-  \includegraphics[width=105mm]{"DFT"}
-}
-\newline
-\subfloat[]{
-  \includegraphics[width=105mm]{"FFT"}
-}
-\caption{Left: First two components of the DFT computed by hand Right: Matlab Solution}
-\end{figure}
+% \begin{figure}[h!]
+% \captionsetup[subfloat]{labelformat=empty}
+% \centering
+% \subfloat[]{
+%   \includegraphics[width=105mm]{"DFT"}
+% }
+% \newline
+% \subfloat[]{
+%   \includegraphics[width=105mm]{"FFT"}
+% }
+% \caption{Left: First two components of the DFT computed by hand Right: Matlab Solution}
+% \end{figure}
 
-\newpage
+% \newpage
 \item Transforming the matrix results in the following:
 
-\begin{figure}[H]
-\captionsetup[subfloat]{labelformat=empty}
-\centering
-\subfloat[]{
-  \includegraphics[width=65mm]{"AltDFT"}
-}
-\newline
-\subfloat[]{
-  \includegraphics[width=105mm]{"AlternateFFT"}
-}
-\caption{Top: Image transformed by $(-1)^{x+y}$ Bottom: DFT solution provided by matlab}
-\end{figure}
+% \begin{figure}[h!]
+% \captionsetup[subfloat]{labelformat=empty}
+% \centering
+% \subfloat[]{
+%   \includegraphics[width=65mm]{"AltDFT"}
+% }
+% \newline
+% \subfloat[]{
+%   \includegraphics[width=105mm]{"AlternateFFT"}
+% }
+% \caption{Top: Image transformed by $(-1)^{x+y}$ Bottom: DFT solution provided by Matlab}
+% \end{figure}
 
 The computation of the DFT was provided by Matlab's fft2() function.
 
 \item As seen by the final solutions, the resulting DFTs are just shifted versions of each other.  The matrix transformed by the (-1) term shifts the frequencies so that the DC is centered and the other frequencies expand radially from there.
 
 \item Question 7.25:
-	\begin{enumerate}[label=\alph*]
-		\item In the HSI space, each pure color region demonstrates a Saturation of 1 and an Intensity of 1/3 (given by equations 7-18 and 7-19 in the textbook).  However, each converted color demonstrates a different hue, the R at 0, G at $\frac{1}{3}$ and B at $\frac{2}{3}$, which are the normalized hue values given by equations 7-17 and 7-17 in the textbook.
+	% \begin{enumerate}[label=\alph*]
+	% 	\item In the HSI space, each pure color region demonstrates a Saturation of 1 and an Intensity of 1/3 (given by equations 7-18 and 7-19 in the textbook).  However, each converted color demonstrates a different hue, the R at 0, G at $\frac{1}{3}$ and B at $\frac{2}{3}$, which are the normalized hue values given by equations 7-17 and 7-17 in the textbook.
 
-		\item Smoothing the resulting HSI image over the saturation component will not affect the image visually, the only would be in intensity. 
+	% 	\item Smoothing the resulting HSI image over the saturation component will not affect the image visually, the only would be in intensity. 
 
-		\item Similar to part b, the hue image would not be altered by a kernel smoothing.  Only intensity would be affected.
-	\end{enumerate}
+	% 	\item Similar to part b, the hue image would not be altered by a kernel smoothing.  Only intensity would be affected.
+	% \end{enumerate}
 
 \end{enumerate}
 
 \section*{Part II MATLAB Programming}
 \begin{enumerate}
-\item This question asked to identify and remove an anomalous frequency in a corrupted image.  This was done by observing the DFT of the image and multiplying the frequency image by a gaussian kernel to effectively smooth the high frequency components.  The bandwidth was chosen subjectively.  While this method was adequate in removing the frequency interference, it resulted in loss of high frequency detail in the spatial domain.
+\item This question asked to identify and remove an anomalous frequency in a corrupted image.  This was done by observing the DFT of the image and multiplying the frequency image by a gaussian kernel to effectively smooth the high frequency components.  The bandwidth was chosen subjectively.  The image was then reconstructed using the inverse DFT.  While this method was adequate in removing the frequency interference, it resulted in loss of high frequency detail in the spatial domain.
 
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width = 0.5\textwidth]{Images/interference.png}
-		\caption{8-bit intensity image corrupted by frequency noise}
-		\label{interference}
-	\end{figure}
-\end{center}
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width = 0.5\textwidth]{Images/dftNoisy.png}
-		\caption{Zoomed in DFT of the corrupted image.  Anomalous frequencies can be seen in the corners of the zoomed image.}
-		\label{dftNoisy}
-	\end{figure}
-\end{center}
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width = 0.5\textwidth]{Images/kernel.png}
-		\caption{Gaussian kernel with bandwidth $\sigma = 15$}
-		\label{kernel}
-	\end{figure}
-\end{center}
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width = 0.5\textwidth]{Images/dftClean.png}
-		\caption{"Cleaned" dft image zoomed in.  This image is a result of the multiplication of the gaussian kernel and corrupted dft image.  It can be observed that the anomalous frequencies seen in fig \ref{dftNoisy} have been attenuated.}
-		\label{dftClean}
-	\end{figure}
-\end{center}
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width = 0.5\textwidth]{Images/denoised.png}
-		\caption{Filtered image of fig \ref{interference}.  Smoothing was performed in the frequency domain.}
-		\label{denoised}
-	\end{figure}
-\end{center}
-
-Code description:
-
+% \begin{center}
+% 	\begin{figure}[h!]
+% 		\centering
+% 		\includegraphics[width = 0.5\textwidth]{Images/interference.png}
+% 		\caption{8-bit intensity image corrupted by frequency noise}
+% 		\label{interference}
+% 	\end{figure}
+% \end{center}
+% \begin{center}
+% 	\begin{figure}[h!]
+% 		\centering
+% 		\includegraphics[width = 0.5\textwidth]{Images/dftNoisy.png}
+% 		\caption{Zoomed in DFT of the corrupted image.  Anomalous frequencies can be seen in the corners of the zoomed image.}
+% 		\label{dftNoisy}
+% 	\end{figure}
+% \end{center}
+% \begin{center}
+% 	\begin{figure}[h!]
+% 		\centering
+% 		\includegraphics[width = 0.5\textwidth]{Images/kernel.png}
+% 		\caption{Gaussian kernel with bandwidth $\sigma = 15$}
+% 		\label{kernel}
+% 	\end{figure}
+% \end{center}
+% \begin{center}
+% 	\begin{figure}[h!]
+% 		\centering
+% 		\includegraphics[width = 0.5\textwidth]{Images/dftClean.png}
+% 		\caption{"Cleaned" dft image zoomed in.  This image is a result of the multiplication of the gaussian kernel and corrupted dft image.  It can be observed that the anomalous frequencies seen in fig \ref{dftNoisy} have been attenuated.}
+% 		\label{dftClean}
+% 	\end{figure}
+% \end{center}
+% \begin{center}
+% 	\begin{figure}[h!]
+% 		\centering
+% 		\includegraphics[width = 0.5\textwidth]{Images/denoised.png}
+% 		\caption{Filtered image of fig \ref{interference}.  Smoothing was performed in the frequency domain.}
+% 		\label{denoised}
+% 	\end{figure}
+% \end{center}
 
 \item This question asked to convert the gray-scale images from homework 2 into 8-color pseudo-color images with the colors: red, blue, green, yellow, orange, purple, brown, and black.  Results of the conversion using intensity slicing are presented below.
 
-\begin{figure}[h!]
-\captionsetup[subfloat]{labelformat=empty}
-\centering
-\subfloat[]{
-  \includegraphics[width=70mm]{flowers.png}
-}
-\subfloat[]{
-  \includegraphics[width=70mm]{pcFlowers.png}
-}
-\hspace{0mm}
-\subfloat[]{
-  \includegraphics[width=70mm]{swan.png}
-}
-\subfloat[]{
-  \includegraphics[width=70mm]{pcSwan.png}
-}
-\hspace{0mm}
-\subfloat[]{
-  \includegraphics[width=70mm]{tools.png}
-}
-\subfloat[]{
-  \includegraphics[width=70mm]{pcTools.png}
-}
-\caption{Left Column: 8-bit intensity images Right Column: Corresponding 8-color pseudo images}
-\label{pc}
-\end{figure}
+% \begin{figure}[h!]
+% \captionsetup[subfloat]{labelformat=empty}
+% \centering
+% \subfloat[]{
+%   \includegraphics[width=70mm]{flowers.png}
+% }
+% \subfloat[]{
+%   \includegraphics[width=70mm]{pcFlowers.png}
+% }
+% \hspace{0mm}
+% \subfloat[]{
+%   \includegraphics[width=70mm]{swan.png}
+% }
+% \subfloat[]{
+%   \includegraphics[width=70mm]{pcSwan.png}
+% }
+% \hspace{0mm}
+% \subfloat[]{
+%   \includegraphics[width=70mm]{tools.png}
+% }
+% \subfloat[]{
+%   \includegraphics[width=70mm]{pcTools.png}
+% }
+% \caption{Left Column: 8-bit intensity images Right Column: Corresponding 8-color pseudo images}
+% \label{pc}
+% \end{figure}
 
-Code description:
 \end{enumerate}
 
- \newpage
+
  \noindent 
- Accompanying code is provided in $mccurleyHW04.m$ 
+ Accompanying code is provided in $mccurleyHW04.m$, $removeInterference.m$, $pseudoColor.m$, and $colorSegmentation.m$
 
 
 \end{document}

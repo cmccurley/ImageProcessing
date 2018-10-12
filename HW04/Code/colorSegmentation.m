@@ -2,16 +2,23 @@ function [segmentedImages] = colorSegmentation(image)
 
 %{ 
 %%***********************************************************************
-%    *  File:  pseudoColor.m
+%    *  File:  colorSegmentation.m
 %    *  Name:  Connor McCurley
 %    *  Date:  10/11/2018
 %    *  Course: EEE 6512 Image Processing and Computer Vision
-%    *  Desc:  This function takes in a cell of images and returns their
-%              8-value pseudo-color images
-%    *  Input: image - cell list of NxN uint8 images
-%    * Output: filteredImage - NxN uint8 pseudo-clor image
+%    *  Desc:  This function takes in an rgb color image and 
+%              performs segmentation using three different color
+%              spaces
+%    *  Input: image - MxN rgb image
+%    * Output: segmentedImages - cell containing three MxN images 
+%              segmented in different color spaces
 %%**********************************************************************
 %} 
+
+figure();
+imshow(scene);
+title('Color Image of a Scene');
+
 
 pcImages = {};
 

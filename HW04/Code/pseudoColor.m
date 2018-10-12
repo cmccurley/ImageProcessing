@@ -8,8 +8,8 @@ function [pcImages] = pseudoColor(iImages)
 %    *  Course: EEE 6512 Image Processing and Computer Vision
 %    *  Desc:  This function takes in a cell of images and returns their
 %              8-value pseudo-color images
-%    *  Input: image - cell list of NxN uint8 images
-%    * Output: filteredImage - NxN uint8 pseudo-clor image
+%    *  Input: image - cell list of MxN uint8 images
+%    * Output: pcImages - cell list of MxN uint8 pseudo-color images
 %%**********************************************************************
 %} 
 
@@ -38,7 +38,8 @@ levels = 0:(2^8)-1;
 levels = reshape(levels,[numLevelsperBin, numBins]);
 levels = levels';
 
-% find which of the 8 rows the current value falls into 
+% find which of the 8 rows the current value falls into and assign color
+% label to each pixel
 for image = 1:size(iImages,2)
     thisImage = iImages{image};
     pcImage = zeros(size(thisImage,1),size(thisImage,2));
@@ -61,7 +62,5 @@ for image = 1:size(pcImages,2)
     cbh = colorbar; 
     cbh.Ticks = linspace(0, 1, numBins);  
 end
-
-
 
 end

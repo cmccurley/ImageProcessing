@@ -4,9 +4,10 @@
     *  Name:  Connor McCurley
     *  Date:  09/26/2018
     *  Course: EEE 6512 Image Processing and Computer Vision
-    *  Desc:  This script allows the user to run either a Median or Box
-              filter with varying sizes on a noisy image as required
-              by HW03.
+    *  Desc:  This script allows the user to run the questions asked
+              in HW04.  Each question can be completed by setting
+              the appropriate boolean in the 'Set Parameters' section
+              of the code.
 **********************************************************************
 %} 
 
@@ -24,25 +25,22 @@ scene = imread('scene.ppm');
 
 % =========================== %Set Parameters =============================
 runInterferenceRemoval = 0;
-runPseudoColor = 1;
-runSegmentation = 0;
-
-% figure();
-% imshow(scene);
-% title('Color Image of a Scene');
-
+runPseudoColor = 0;
+runSegmentation = 1; 
 
 % =========================== %Run functions ==============================
-if(runInterferenceRemoval)
 %Remove interference from corrupted image
+if(runInterferenceRemoval)
 [denoisedImage] = removeInterference(interference);
 end
 
+%Convert intensity images into pseudo-color images
 if(runPseudoColor)
     iImages = {flower, swan, tools};
     [pcImages] = pseudoColor(iImages);
 end
 
+%Segment color image using RGB, HSI, and LAB color spaces
 if(runSegmentation)
    [segmentedImages] = colorSegmentation(scene);
 end
