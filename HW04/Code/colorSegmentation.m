@@ -15,16 +15,16 @@ function [segmentedImages] = colorSegmentation(scene)
 %%**********************************************************************
 %} 
 rgbImage = scene;
-% figure();
-% imshow(rgbImage);
-% title('RGB Image of a Scene');
+figure();
+imagesc(rgbImage);
+title('RGB Image of a Scene');
 
 %================= convert rgb to hsi =====================================
 hsiImage = rgb2hsv(scene);
 
-% figure();
-% imshow(hsiImage);
-% title('HSI Image of a Scene');
+figure();
+imagesc(hsiImage);
+title('HSI Image of a Scene');
 
 hsiImage = hsiImage(:,:,1:2); %discard intensity for segmentation
 %==========================================================================
@@ -32,9 +32,9 @@ hsiImage = hsiImage(:,:,1:2); %discard intensity for segmentation
 %================= convert rgb to lab =====================================
 labImage = rgb2lab(scene);
 
-% figure();
-% imshow(labImage);
-% title('LAB Image of a Scene');
+figure();
+imagesc(labImage);
+title('LAB Image of a Scene');
 %==========================================================================
 
 Images = {rgbImage,hsiImage,labImage};
@@ -46,7 +46,7 @@ saveNames = {'segmentedRGB', 'segmentedHSI', 'segmentedLAB'}; %names to save fig
 colorNames = ['Purple','Orange','Yellow','Green','Blue','Red'];
 colors = [255,0,255;255,165,0;255,255,0;0,255,0;0,0,255;255,0,0];
 colors = colors./255;
-labelNames = {'Sky','Cloud','Sand','Vegetation','Water','Rock'};
+labelNames = {'Sky','Cloud','Sand','Plants','Water','Rock'};
 
 segmentedImages = {};
 for image = 1:size(Images,2)
@@ -63,8 +63,8 @@ for image = 1:size(Images,2)
    rocks = Images{image}(1200:1210,873:886,:);
    
    %create labels
-   protMats = {sky1,sky2,cloud,tree,sand1,sand2,water,rocks};
-   labels = [1,1,2,3,4,4,5,6];
+   protMats = {sky1,sky2,cloud,sand1,sand2,tree,water,rocks};
+   labels = [1,1,2,3,3,4,5,6];
    
    prototypes = [];
    
