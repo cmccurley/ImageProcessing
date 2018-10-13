@@ -167,7 +167,7 @@ My code generated the pseudo-color images by first creating a look-up table of  
 \end{enumerate}
 
 \section*{Part III Extra Credit}
-For this portion of the assignment, my code converted the scene provided into  3 separate images of colorspace RGB, HSI, and LAB, respectively. Each image was then segmented using 
+For this portion of the assignment, my code converted the scene provided into  3 separate images of colorspace RGB, HSI, and LAB, respectively. Each image was then segmented using color slicing.  Prototype regions were selected from areas of each image to include sky, cloud, water, sand, rock, and vegetation.  Each prototye region was averaged to provide a single feature vector prototype.  Euclidean distance was calculated between each pixel in an image and the set of prototypes.  The pixel was assigned the label of the closest prototype.  This process was repeated for the RGB, HSI, and LAB color spaces.
 
 \begin{figure}[H]
 \captionsetup[subfloat]{labelformat=empty}
@@ -176,26 +176,27 @@ For this portion of the assignment, my code converted the scene provided into  3
   \includegraphics[width=40mm]{rgbScene.png}
 }
 \subfloat[]{
-  \includegraphics[width=70mm]{pcFlowers.png}
+  \includegraphics[width=70mm]{segmentedRGB.png}
 }
 \hspace{0mm}
 \subfloat[]{
   \includegraphics[width=40mm]{hsiScene.png}
 }
 \subfloat[]{
-  \includegraphics[width=70mm]{pcSwan.png}
+  \includegraphics[width=70mm]{segmentedHSI.png}
 }
 \hspace{0mm}
 \subfloat[]{
   \includegraphics[width=40mm]{labScene.png}
 }
 \subfloat[]{
-  \includegraphics[width=70mm]{pcTools.png}
+  \includegraphics[width=70mm]{segmentedLAB.png}
 }
 \caption{Left Column: Original in rgb,hsi, and lab color spaces from top to bottom, respectively.  Right column: Corresponding segmented image}
 \label{pc}
 \end{figure}
 
+It is worth noting that th
 
  \noindent 
  Accompanying code is provided in $mccurleyHW04.m$, $removeInterference.m$, $pseudoColor.m$, and $colorSegmentation.m$
