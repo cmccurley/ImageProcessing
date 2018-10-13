@@ -1,4 +1,4 @@
-function [segmentedImages] = colorSegmentation(image)
+function [segmentedImages] = colorSegmentation(scene)
 
 %{ 
 %%***********************************************************************
@@ -14,99 +14,94 @@ function [segmentedImages] = colorSegmentation(image)
 %              segmented in different color spaces
 %%**********************************************************************
 %} 
-rgbImage = image;
-figure();
-imshow(rgbImage);
-title('RGB Image of a Scene');
+rgbImage = scene;
+% figure();
+% imshow(rgbImage);
+% title('RGB Image of a Scene');
 
 %================= convert rgb to hsi =====================================
-rgb = im2double(image);
-r = rgb(:, :, 1);
-g = rgb(:, :, 2);
-b = rgb(:, :, 3);
+hsiImage = rgb2hsv(scene);
 
-% Implement the conversion equations.
-num = 0.5*((r - g) + (r - b));
-den = sqrt((r - g).^2 + (r - b).*(g - b));
-theta = acos(num./(den + eps));
+% figure();
+% imshow(hsiImage);
+% title('HSI Image of a Scene');
 
-H = theta;
-H(b > g) = 2*pi - H(b > g);
-H = H/(2*pi);
-
-num = min(min(r, g), b);
-den = r + g + b;
-den(den == 0) = eps;
-S = 1 - 3.* num./den;
-
-H(S == 0) = 0;
-
-I = (r + g + b)/3;
-
-% Combine all three results into an hsi image.
-hsiImage = cat(3, H, S, I);
-
-figure();
-imshow(hsiImage);
-title('HSI Image of a Scene');
+hsiImage = hsiImage(:,:,1:2); %discard intensity for segmentation
 %==========================================================================
 
 %================= convert rgb to lab =====================================
-labImage = rgb2lab(image);
+labImage = rgb2lab(scene);
 
-figure();
-imshow(hsiImage);
-title('LAB Image of a Scene');
+% figure();
+% imshow(labImage);
+% title('LAB Image of a Scene');
 %==========================================================================
 
-
 Images = {rgbImage,hsiImage,labImage};
+ImageNames = {'RGB Image', 'HSI Image', 'LAB Image'}; %titles of images
+saveNames = {'segmentedRGB', 'segmentedHSI', 'segmentedLAB'}; %names to save figures as
+
 
 %define discrete colors
-colorNames = ['Black','Brown','Purple','Orange','Yellow','Green','Blue','Red'];
-colors = [0 0 0; 139,69,19;255,0,255;255,165,0;255,255,0;0,255,0;0,0,255;255,0,0];
+colorNames = ['Purple','Orange','Yellow','Green','Blue','Red'];
+colors = [255,0,255;255,165,0;255,255,0;0,255,0;0,0,255;255,0,0];
 colors = colors./255;
+labelNames = {'Sky','Cloud','Sand','Vegetation','Water','Rock'};
 
-%plot intensity images
-for image = 1:size(iImages,2)
-figure();
-colormap(gray);
-imagesc(iImages{image});
-title('8-bit Intensity Image');
+segmentedImages = {};
+for image = 1:size(Images,2)
+    Images{image} = single(Images{image}); %cast image as a single
+    
+   %define sample regions for each class
+   sky1 = Images{image}(86:200,32:208,:);
+   sky2 = Images{image}(636:667,307:346,:);
+   cloud = Images{image}(32:288,624:721,:);
+   tree = Images{image}(621:712,495:886,:);
+   sand1 = Images{image}(1130:1220,250:442,:);
+   sand2 = Images{image}(1180:1200,775:825,:);
+   water = Images{image}(769:804,421:474,:);
+   rocks = Images{image}(1200:1210,873:886,:);
+   
+   %create labels
+   protMats = {sky1,sky2,cloud,tree,sand1,sand2,water,rocks};
+   labels = [1,1,2,3,4,4,5,6];
+   
+   prototypes = [];
+   
+   %take average of class regions to generate class prototypes
+   for mat = 1:size(protMats,2)
+       matrix = protMats{mat};
+       matVector = reshape(matrix,[],size(matrix,3));
+       avgVect = mean(matVector);
+       prototypes = horzcat(prototypes,avgVect');
+   end
+   
+   %take distance of each pixel to all of the prototypes and set pixel
+   %label
+   labelledImage = zeros(size(Images{image},1),size(Images{image},2));
+   for col = 1:size(Images{image},2)
+       for row = 1:size(Images{image},1)
+            [distances] = pdist2(squeeze(Images{image}(row,col,:))',prototypes');
+            [minVal, minInd] = min(distances);
+            labelledImage(row,col) = labels(minInd);
+       end
+   end
+   
+segmentedImages{image} = uint8(labelledImage);  %cast image as uint8
+disp('Finished Image');
 end
 
-%bin intensity values
-numBins = 8;
-maxVal = (2^numBins)-1;
-numLevelsperBin = (maxVal+1)/numBins;
 
-%Make a look-up table of intensity values
-levels = 0:(2^8)-1;
-levels = reshape(levels,[numLevelsperBin, numBins]);
-levels = levels';
 
-% find which of the 8 rows the current value falls into 
-for image = 1:size(iImages,2)
-    thisImage = iImages{image};
-    pcImage = zeros(size(thisImage,1),size(thisImage,2));
-    for row = 1:size(thisImage,1)
-        for col = 1:size(thisImage,2)
-            [levelRow, ~] = find(levels == thisImage(row,col));
-            pcImage(row,col) = levelRow;
-        end
-    end
-    pcImages{image} = pcImage;
-end
-
-%plot each binned image
-for image = 1:size(pcImages,2)
+%plot each segmented image
+for image = 1:size(segmentedImages,2)
     figure();
     colormap(colors);
-    imagesc(pcImages{image});
-    title('Pseudo-Color Image');
-    cmap = colormap(colors(numBins)); 
-    cbh = colorbar; 
-    cbh.Ticks = linspace(0, 1, numBins);  
+    imagesc(segmentedImages{image});
+    title(['Segmented ' ImageNames{image}]);
+    cmap = colormap(colors(size(labels,2)-2)); 
+    cbh = lcolorbar(labelNames,'fontweight','bold');
+%     saveas(gcf,saveNames{image});
 end
 
 
