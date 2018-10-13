@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.3)  12 OCT 2018 21:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.3)  12 OCT 2018 21:57
 entering extended mode
 **C:/Users/Conma/Documents/ImageProcessing/HW04/Report/mccurleyHW04.tex
 (C:/Users/Conma/Documents/ImageProcessing/HW04/Report/mccurleyHW04.tex
@@ -726,7 +726,7 @@ s/pcSwan.png (PNG copy)> <C:/Users/Conma/Documents/ImageProcessing/HW04/Report/
 Images/tools.png (PNG copy)> <C:/Users/Conma/Documents/ImageProcessing/HW04/Rep
 ort/Images/pcTools.png (PNG copy)>]
 <"C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"rgbScene.png, id
-=85, 582.67688pt x 708.39656pt>
+=85, 421.575pt x 316.18124pt>
 File: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"rgbScene.pn
 g Graphic file (type png)
 
@@ -734,7 +734,7 @@ g Graphic file (type png)
 >
 Package pdftex.def Info: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/
 Images/"rgbScene.png used on input line 177.
-(pdftex.def)             Requested size: 113.81102pt x 138.35835pt.
+(pdftex.def)             Requested size: 170.71652pt x 128.03822pt.
 
 <"C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"segmentedRGB.png
 , id=86, 421.575pt x 316.18124pt>
@@ -745,10 +745,10 @@ B.png Graphic file (type png)
 .png>
 Package pdftex.def Info: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/
 Images/"segmentedRGB.png used on input line 180.
-(pdftex.def)             Requested size: 199.16928pt x 149.37712pt.
+(pdftex.def)             Requested size: 170.71652pt x 128.03822pt.
 
 <"C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"hsiScene.png, id
-=87, 582.67688pt x 708.39656pt>
+=87, 421.575pt x 316.18124pt>
 File: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"hsiScene.pn
 g Graphic file (type png)
 
@@ -756,7 +756,7 @@ g Graphic file (type png)
 >
 Package pdftex.def Info: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/
 Images/"hsiScene.png used on input line 184.
-(pdftex.def)             Requested size: 113.81102pt x 138.35835pt.
+(pdftex.def)             Requested size: 170.71652pt x 128.03822pt.
 
 <"C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"segmentedHSI.png
 , id=88, 421.575pt x 316.18124pt>
@@ -767,10 +767,10 @@ I.png Graphic file (type png)
 .png>
 Package pdftex.def Info: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/
 Images/"segmentedHSI.png used on input line 187.
-(pdftex.def)             Requested size: 199.16928pt x 149.37712pt.
+(pdftex.def)             Requested size: 170.71652pt x 128.03822pt.
 
 <"C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"labScene.png, id
-=89, 582.67688pt x 708.39656pt>
+=89, 421.575pt x 316.18124pt>
 File: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"labScene.pn
 g Graphic file (type png)
 
@@ -778,7 +778,7 @@ g Graphic file (type png)
 >
 Package pdftex.def Info: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/
 Images/"labScene.png used on input line 191.
-(pdftex.def)             Requested size: 113.81102pt x 138.35835pt.
+(pdftex.def)             Requested size: 170.71652pt x 128.03822pt.
 
 <"C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/"segmentedLAB.png
 , id=90, 421.575pt x 316.18124pt>
@@ -789,34 +789,34 @@ B.png Graphic file (type png)
 .png>
 Package pdftex.def Info: "C:/Users/Conma/Documents/ImageProcessing/HW04/Report/
 Images/"segmentedLAB.png used on input line 194.
-(pdftex.def)             Requested size: 199.16928pt x 149.37712pt.
- [7]
-Overfull \hbox (61.42894pt too wide) in paragraph at lines 201--203
+(pdftex.def)             Requested size: 170.71652pt x 128.03822pt.
+
+Overfull \hbox (61.42894pt too wide) in paragraph at lines 202--204
 \OT1/cmr/m/n/10 Accompanying code is pro-vided in $\OML/cmm/m/it/10 mccurleyHW\
 OT1/cmr/m/n/10 04\OML/cmm/m/it/10 :m$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 remove
 Interference:m$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 pseudoColor:m$\OT1/cmr/m/n/1
 0 , and $\OML/cmm/m/it/10 colorSegmentation:m$ 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
-[8 <C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/rgbScene.png (P
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
+[7 <C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/rgbScene.png (P
 NG copy)> <C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Images/segmente
 dRGB.png (PNG copy)> <C:/Users/Conma/Documents/ImageProcessing/HW04/Report/Imag
 es/hsiScene.png (PNG copy)> <C:/Users/Conma/Documents/ImageProcessing/HW04/Repo
 rt/Images/segmentedHSI.png (PNG copy)> <C:/Users/Conma/Documents/ImageProcessin
 g/HW04/Report/Images/labScene.png (PNG copy)> <C:/Users/Conma/Documents/ImagePr
-ocessing/HW04/Report/Images/segmentedLAB.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+ocessing/HW04/Report/Images/segmentedLAB.png (PNG copy)>] [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
  (mccurleyHW04.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
 Package rerunfilecheck Info: File `mccurleyHW04.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
  10518 strings out of 493323
@@ -825,14 +825,14 @@ Here is how much of TeX's memory you used:
  13834 multiletter control sequences out of 15000+200000
  9307 words of font info for 35 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,10n,49p,684b,562s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,10n,49p,722b,562s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmsy10.pfb>
-Output written on mccurleyHW04.pdf (8 pages, 3176456 bytes).
+Output written on mccurleyHW04.pdf (8 pages, 2106475 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  46 named destinations out of 1000 (max. 500000)
