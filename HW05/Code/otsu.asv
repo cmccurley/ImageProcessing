@@ -62,7 +62,7 @@ for im = 1:length(hists)
     
     %find the global mean (eqt 10-54)
     for k = 1:nBins
-       globalMean = globalMean + (iHist(k)*(k-1)); 
+       globalMean = globalMean + (iHist()*(ind-1)); 
     end
     
     %calculate between-class variances (eqt 10-62)
@@ -75,7 +75,7 @@ for im = 1:length(hists)
     
     %calculate the global variance (eqt 10-58)
     for k = 1:nBins
-       globalVar = globalVar + (((k-1) - globalMean)^2)*iHist(k); 
+       globalVar = globalVar + (((k-1) - globalMean)^2)*iHist(ind); 
     end
     
     %compute the separability measure (eqt 10-61)
