@@ -21,7 +21,9 @@ scene = imread('pic1.ppm');
 
 % =========================== %Run functions ==============================
 %extract foreground using Otsu's method
-[threshImage] = otsu(scene);
+% [threshImage] = otsu(scene);
+
+load('threshImage.mat');
 
 %extract contours
 [segmentedImage] = extractContours(threshImage);

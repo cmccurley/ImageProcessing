@@ -112,6 +112,8 @@ colormap(gray)
 imagesc(binaryImages{3});
 title('Green Channel Thresholded Image using Otsu');
 
-threshImage = binaryImages{2};
-
+threshImage = zeros(size(binaryImages{1},1),size(binaryImages{1},2),3);
+for n = 1:length(binaryImages)
+   threshImage(:,:,n) = binaryImages{n}; 
+end
 end

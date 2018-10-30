@@ -8,45 +8,48 @@ function [segmentedImage] = extractContours(image)
 %    *  Course: EEE 6512 Image Processing and Computer Vision
 %    *  Desc:  
 %    *  Input: 
-%    * Output: 
+%    *  Output: 
 %%**********************************************************************
 %} 
 
-sigma = 15; %gaussian kernel bandwidth
+binaryImages = {};
 
-%Show corrupted image
+for n = 1:size(image,3)
+    binaryImages{n} = image(:,:,n); 
+end
+
+
+iImage = binaryImages{1};
+
+newImage = medfilt2(iImage,[9 9]);
 figure();
 colormap(gray);
-imagesc(interference);
-colorbar;
-title('Image with Interference');
+imagesc(newImage);
 
-%Transfer image to frequency domain
-dftImage = fftshift(fft2(image));
+iImage = binaryImages{2};
 
-%create gaussian low-pass filter
-H = fspecial('gaussian',size(dftImage),sigma);
-figure();
-imagesc(H);
-title(['Gaussian Low-Pass Kernel with Sigma: ' num2str(sigma)]);
-
-%plot DFT of corrupted image
-figure();
-imagesc(abs(dftImage));
-title('Magnitude of DFT for Image with Interference');
-
-%correct image by applying median filter
-denoisedFreqImage = H.*dftImage;
-figure();
-imagesc(abs(denoisedFreqImage));
-title('Magnitude of DFT of the Denoised Image');
-
-%convert back to spatial domain
-denoisedImage = abs((ifft2(ifftshift(denoisedFreqImage))));
-
-%plot corrected image
+newImage = medfilt2(iImage,[9 9]);
 figure();
 colormap(gray);
-imagesc(denoisedImage);
-title('Image with Interference Corrected');
+imagesc(newImage);
+iImage = binaryImages{3};
+
+newImage = medfilt2(iImage,[9 9]);
+figure();
+colormap(gray);
+imagesc(newImage);
+
+newImage = binaryImages{1}.*binaryImages{2};
+newImage = newImage.*binaryImages{3};
+figure();
+colormap(gray);
+imagesc(newImage);
+
+
+newImage = medfilt2(iImage,[9 9]);
+figure();
+colormap(gray);
+imagesc(newImage);
+
+
 end
