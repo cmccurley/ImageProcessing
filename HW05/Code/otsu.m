@@ -13,23 +13,33 @@ function [threshImage] = otsu(image)
 %} 
 nBins = 256;
 
-%separate color channels
-redImage = image(:,:,1);
-blueImage = image(:,:,2);
-greenImage = image(:,:,3);
-
 %Show original image
 figure();
 imagesc(image);
 title('Scene to be Segmented');
+
+%separate color channels
+redImage = image(:,:,1);
+greenImage = image(:,:,2);
+blueImage = image(:,:,3);
+
+%apply smoothing on each channel
+redImage = imgaussfilt(redImage,8);
+greenImage = imgaussfilt(greenImage,8);
+blueImage = imgaussfilt(blueImage,8);
+
+%detect edges
+redEdges = edge(redImage,'sobel');
+greenEdges = edge(greenImage,'sobel');
+blueEdges = edge(blueImage,'sobel');
 
 %calculate normalized histograms
 rHist = myhist(redImage, 'Red Channel');
 bHist = myhist(blueImage, 'Blue Channel');
 gHist = myhist(greenImage, 'Green Channel');
 
-hists = {rHist, bHist, gHist};
-images = {redImage, blueImage, greenImage};
+hists = {rHist, gHist, bHist};
+images = {redImage, greenImage, blueImage};
 
 binaryImages = {};
 
@@ -72,6 +82,7 @@ for im = 1:length(hists)
     
     %find optimal threshold value for which bcVar is maximized
     [val, thresh] = max(bcVar);
+    thresh = thresh - 1;
     
     %calculate the global variance (eqt 10-58)
     for k = 1:nBins
@@ -105,12 +116,12 @@ title('Red Channel Thresholded Image using Otsu');
 figure();
 colormap(gray)
 imagesc(binaryImages{2});
-title('Blue Channel Thresholded Image using Otsu');
+title('Green Channel Thresholded Image using Otsu');
 
 figure();
 colormap(gray)
 imagesc(binaryImages{3});
-title('Green Channel Thresholded Image using Otsu');
+title('Blue Channel Thresholded Image using Otsu');
 
 threshImage = zeros(size(binaryImages{1},1),size(binaryImages{1},2),3);
 for n = 1:length(binaryImages)
