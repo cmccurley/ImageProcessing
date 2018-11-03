@@ -42,8 +42,10 @@ ex2 = imread('ex2.pgm');
 % plotMask(scene,segmentedImage);
 
 % ========================== Extra Credit =================================
+load('gt.mat');
 % [ex1] = otsuBinary(ex1);
-% [ex2] = otsuBinary(ex2);
+[ex2] = otsuBinary(ex2);
+[ex2] = extractContoursBinary(ex2,gt);
 
 
 
