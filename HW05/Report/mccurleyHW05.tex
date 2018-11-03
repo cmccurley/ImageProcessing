@@ -53,7 +53,7 @@ For this question, we were provided the following image (Fig. \ref{scene}) and a
 \end{center}
 
 \noindent
-To accomplish the segmentation, I first applied Gaussian smoothing to each color channel with $\sigma=2$.  This makes sense to do since we don't want to consider all of the high-frequency "noise" scattered throughout the image, such as in the trees.  Since we only cared about the border regions between the foreground and background, I then applied a Sobel edge detector in each color channel to find the first derivative edges.  The histograms fro Otsu's method only considered these edge pixels. The results of the edge detection are shown in Fig.\ref{edges}
+To accomplish the segmentation, I first applied Gaussian smoothing to each color channel with $\sigma=2$.  This makes sense to do since we don't want to consider all of the high-frequency "noise" scattered throughout the image, such as in the trees.  Since we only cared about the border regions between the foreground and background, I then applied a Sobel edge detector in each color channel to find the first derivative edges.  The histograms for Otsu's method only considered these edge pixels. The results of the edge detection are shown in Fig.\ref{edges}
 
 \begin{figure}[H]
 \captionsetup[subfloat]{labelformat=empty}
@@ -72,7 +72,7 @@ To accomplish the segmentation, I first applied Gaussian smoothing to each color
 \end{figure}
 
 \noindent
-The normalized histogram was found in each color channel using code written for HW02, and only considered the pixels found from the Sobel Edge detection.  The normalized histograms of edge pixels are shown in Fig. \ref{hist}.
+The normalized histogram was found in each color channel using code written for HW02, and only considered the pixels found from the Sobel edge detection.  The normalized histograms of edge pixels are shown in Fig. \ref{hist}.
 
 \begin{figure}[H]
 \captionsetup[subfloat]{labelformat=empty}
@@ -108,12 +108,12 @@ Otsu's method was then performed in each color channel following equations 10-49
 \subfloat[]{
   \includegraphics[width=.325\textwidth]{Images/blueThresh.png}
 }
-\caption{From left to right: Normalized histogram of Sobel detected edge pixels detected in the red channel, green channel, and blue channel}
+\caption{From left to right: Foreground exraction using Otsu's Method in the red channel, green channel, and blue channel}
 \label{otsu}
 \end{figure}
 
 \noindent
-Although it was clear that the blue channel could have been used solely to extract the foreground, we wanted this to be an automated process.  Therefore, the channels needed to be aggregated to utilize the foreground information contained in each.  This was accomplished using a logical OR operation between each channel.  The resulting image from  the combination is shown in figure 
+Although it was clear that the blue channel could have been used solely to extract the foreground, we wanted this to be an autonomous process.  Therefore, the channels needed to be aggregated to utilize the foreground information contained in each.  This was accomplished using a logical OR operation between each channel.  The resulting image from  the combination is shown in figure 
 
 
 \begin{center}
@@ -170,42 +170,29 @@ The las step was to extract the boundary of the foreground.  This was done by su
 	\end{figure}
 \end{center}
 
+\noindent
+While segmentation results were not perfect due to many factors such as: smoothing parameters, size and shape of the structuring elements, and the general nature of the image, the entire foreground area was discovered using the selected methods. \\
+
+\noindent
+The functions I wrote which were used for this portion of the assignment are as follows:
+\begin{enumerate}
+\item $mccurleyHW05.m$ - Main function which runs the segmentation.
+\item $otsu.m$ - Applies Gaussian filtering, Sobel edge detection, and Otsu's method in each color channel.
+\item $extractContours.m$ - Aggregates the three binary images for each channel, performs morphological opening, morphological closing, boundary extraction, and widens the boundary mask.
+\item $erodeImage.m$ - Erodes a binary image by a given structuring element.
+\item $dilateImage.m$ - Dilates a binary image by a given structuring element. 
+\item $plotMask.m$ - Plots the original scene overlain with the computed boundary mask.
+\item $myHist.m$ - Computes the normalized histogram of an 8 bit intensity image.
+\end{enumerate} 
+
 
 
 \section*{Part II Extra Credit}
 
 
-% \begin{figure}[H]
-% \captionsetup[subfloat]{labelformat=empty}
-% \centering
-% \subfloat[]{
-%   \includegraphics[width=60mm]{rgbScene.png}
-% }
-% \subfloat[]{
-%   \includegraphics[width=60mm]{segmentedRGB.png}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=60mm]{hsiScene.png}
-% }
-% \subfloat[]{
-%   \includegraphics[width=60mm]{segmentedHSI.png}
-% }
-% \hspace{0mm}
-% \subfloat[]{
-%   \includegraphics[width=60mm]{labScene.png}
-% }
-% \subfloat[]{
-%   \includegraphics[width=60mm]{segmentedLAB.png}
-% }
-% \caption{Left Column: Original in rgb,hsi, and lab color spaces from top to bottom, respectively.  Right column: Corresponding segmented image}
-% \label{pc}
-% \end{figure}
 
 
 
- \noindent 
- Accompanying code is provided in $mccurleyHW04.m$, $removeInterference.m$, $pseudoColor.m$, and $colorSegmentation.m$
 
 
 \end{document}
