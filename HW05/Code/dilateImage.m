@@ -1,15 +1,15 @@
-function [erodedImage] = erodeImage(image, se)
+function [dilatedImage] = dilateImage(image, se)
 
 %{ 
 %%***********************************************************************
-%    *  File:  erodeImage.m
+%    *  File:  dilateImage.m
 %    *  Name:  Connor McCurley
 %    *  Date:  10/31/2018
 %    *  Course: EEE 6512 Image Processing and Computer Vision
-%    *  Desc:  Erodes MxN binary image by structuring element se
+%    *  Desc:  Dilates MxN binary image by structuring element se
 %    *  Input: image - MxN binary image, se - binary KxK structuring
                element
-%    * Output: erodedImage - MxN binary image
+%    * Output: dilatedImage - MxN binary image
 %%**********************************************************************
 %} 
 
@@ -19,11 +19,9 @@ seSize = size(se,1);
 
 %apply ones padding to the image
 padSize = floor(seSize/2); %number of rows/columns to pad with
-paddedImage = padarray(image,[padSize padSize],1); %ones pad original image
+paddedImage = padarray(image,[padSize padSize],0); %ones pad original image
 [padImSize.row,padImSize.col] = size(paddedImage); %get size of padded image
-erodedImage = zeros(imageSize.row*imageSize.col,1);
-
-%Erode image with structuring element.  Keep edge values the same.
+dilatedImage = zeros(imageSize.row*imageSize.col,1);
 
 %separate matrix into patches of size seSize by seSize
 ind = 1;    
@@ -35,19 +33,17 @@ for patchCol = 1:(padImSize.col-seSize+1)
     end
 end
          
-%verify if element is fully conatained in region
+%check if any value in the element is a one 
 for pixel = 1:size(imagePatch,3)
-    windowSum = sum(sum(imagePatch(:,:,pixel).*se));
+    windowSum = nnz((imagePatch(:,:,pixel).*se));
 
-    if windowSum == nnz(se)
-        erodedImage(pixel) = 1;
+    if windowSum >= 1
+        dilatedImage(pixel) = 1;
     else
-        erodedImage(pixel) = 0;
+        dilatedImage(pixel) = 0;
     end
 end 
 
-erodedImage = reshape(erodedImage,imageSize.row,imageSize.col);
+dilatedImage = reshape(dilatedImage,imageSize.row,imageSize.col);
 
 end
-
-

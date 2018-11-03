@@ -6,9 +6,11 @@ function [threshImage] = otsu(image)
 %    *  Name:  Connor McCurley
 %    *  Date:  10/29/2018
 %    *  Course: EEE 6512 Image Processing and Computer Vision
-%    *  Desc:  
-%    *  Input: 
-%    * Output: 
+%    *  Desc:  Performs Otsu's methods for foreground extraction on an
+%              rgb image after smoothing with a Gaussian filter and 
+%              edge detection with a sobel filter.
+%    *  Input: image - 3 channel rgb image of size MxN
+%    * Output: threshImage - 3 channel binary image of size MxN
 %%**********************************************************************
 %} 
 nBins = 256;
@@ -24,19 +26,34 @@ greenImage = image(:,:,2);
 blueImage = image(:,:,3);
 
 %apply smoothing on each channel
-redImage = imgaussfilt(redImage,8);
-greenImage = imgaussfilt(greenImage,8);
-blueImage = imgaussfilt(blueImage,8);
+redImage = imgaussfilt(redImage,2);
+greenImage = imgaussfilt(greenImage,2);
+blueImage = imgaussfilt(blueImage,2);
 
-%detect edges
+%detect edges using sobel filter
 redEdges = edge(redImage,'sobel');
 greenEdges = edge(greenImage,'sobel');
 blueEdges = edge(blueImage,'sobel');
 
-%calculate normalized histograms
-rHist = myhist(redImage, 'Red Channel');
-bHist = myhist(blueImage, 'Blue Channel');
-gHist = myhist(greenImage, 'Green Channel');
+figure();
+colormap(gray);
+imagesc(redEdges);
+title('Sobel Edges in Red Channel');
+
+figure();
+colormap(gray)
+imagesc(greenEdges);
+title('Sobel Edges in Green Channel');
+
+figure();
+colormap(gray)
+imagesc(blueEdges);
+title('Sobel Edges in Blue Channel');
+
+%calculate normalized histograms of edge pixels
+rHist = myhist(redImage(redEdges), 'Red Channel');
+gHist = myhist(greenImage(greenEdges), 'Green Channel');
+bHist = myhist(blueImage(blueEdges), 'Blue Channel');
 
 hists = {rHist, gHist, bHist};
 images = {redImage, greenImage, blueImage};
@@ -123,6 +140,7 @@ colormap(gray)
 imagesc(binaryImages{3});
 title('Blue Channel Thresholded Image using Otsu');
 
+%reshape output image into 3 channel binary image
 threshImage = zeros(size(binaryImages{1},1),size(binaryImages{1},2),3);
 for n = 1:length(binaryImages)
    threshImage(:,:,n) = binaryImages{n}; 

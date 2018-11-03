@@ -2,7 +2,7 @@ function [boundImage] = extractContours(image)
 
 %{ 
 %%***********************************************************************
-%    *  File:  extractContours.m
+%    *  File:  removeInterference.m
 %    *  Name:  Connor McCurley
 %    *  Date:  10/29/2018
 %    *  Course: EEE 6512 Image Processing and Computer Vision
@@ -27,35 +27,36 @@ end
 % title('Combined Image');
 
 %combine images using logical OR
-combinedImage = binaryImages{1}|binaryImages{2};
-combinedImage = combinedImage|binaryImages{3};
+newImage = binaryImages{1}|binaryImages{2};
+newImage = newImage|binaryImages{3};
 figure();
 colormap(gray);
-imagesc(combinedImage);
+imagesc(newImage);
 title('Combined Image');
 
-%perform morphological opening to "clean" image (erosion then dilation)
-seOpen = strel('disk',10);
-openedImage = erodeImage(combinedImage, seOpen.Neighborhood);
-openedImage = dilateImage(openedImage, seOpen.Neighborhood);
-figure();
-colormap(gray);
-imagesc(openedImage);
-title('Image after Opening')
 
-%use morphological closing to fill gaps (dilation then erosion)
-seClose = strel('disk',15);
-closedImage = dilateImage(openedImage, seClose.Neighborhood);
-closedImage = erodeImage(closedImage, seClose.Neighborhood);
+
+%perform morphological opening to "clean" image
+se1 = strel('disk',10);
+closedImage = imopen(newImage,se1);
 figure();
 colormap(gray);
 imagesc(closedImage);
-title('Image after Closing')
+title('Image after Opening')
+
+se1 = strel('disk',5);
+closedImage = imclose(closedImage,se1);
+figure();
+colormap(gray);
+imagesc(closedImage);
+title('Image after Close')
 
 %perform boundary extraction (image - (image eroded by se2))
-seBound = ones(3,3);
-erodedImage = erodeImage(closedImage,seBound);
-boundImage = closedImage - erodedImage;
+% se2 = ones(3,3);
+% erodedImage = erodeImage(closedImage,se2);
+% boundImage = closedImage - erodedImage;
+
+boundImage = bwmorph(closedImage,'remove');
 figure();
 colormap(gray);
 imagesc(boundImage);

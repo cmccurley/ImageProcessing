@@ -11,18 +11,6 @@ function [normHist] = myhist(data, dataSet)
 **********************************************************************
 %} 
 
-%Show image
-figure();
-colormap(gray);
-imagesc(data);
-colorbar;
-if(nargin>1)
-    title([dataSet ' Intensity Image']); 
-else
-   title('Intensity Image');
-end
-
-
 %Define number of histogram bins and initialize vector of histogram values
 numBins = 256;
 unnormHist = zeros(numBins,1);
