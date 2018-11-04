@@ -30,22 +30,27 @@ ex2 = imread('ex2.pgm');
 
 % ============================ Problem 1 ==================================
 
-% %extract foreground using Otsu's method
-% % [threshImage] = otsu(scene);
-% 
+%extract foreground using Otsu's method
+[threshImage] = otsu(scene);
+
 % load('threshImage.mat');
-% 
-% %extract contours
-% [segmentedImage] = extractContours(threshImage);
-% 
-% %plot image with boundary mask
-% plotMask(scene,segmentedImage);
+
+%extract contours
+[segmentedImage] = extractContours(threshImage);
+
+%plot image with boundary mask
+plotMask(scene,segmentedImage);
 
 % ========================== Extra Credit =================================
-load('gt.mat');
-% [ex1] = otsuBinary(ex1);
+
+load('gt.mat'); %single points within each organ of interest for connected components
+
+%Find organs of interest in the extra credit images
+[ex1] = otsuBinary(ex1);
+[ex1] = segmentOrgans(ex1,gt);
+
 [ex2] = otsuBinary(ex2);
-[ex2] = extractContoursBinary(ex2,gt);
+[ex2] = segmentOrgans(ex2,gt);
 
 
 

@@ -53,7 +53,7 @@ For this question, we were provided the following image (Fig. \ref{scene}) and a
 \end{center}
 
 \noindent
-To accomplish the segmentation, I first applied Gaussian smoothing to each color channel with $\sigma=2$.  This makes sense to do since we don't want to consider all of the high-frequency "noise" scattered throughout the image, such as in the trees.  Since we only cared about the border regions between the foreground and background, I then applied a Sobel edge detector in each color channel to find the first derivative edges.  The histograms for Otsu's method only considered these edge pixels. The results of the edge detection are shown in Fig.\ref{edges}
+To accomplish the segmentation, I first applied Gaussian smoothing to each color channel with $\sigma=2$.  This made sense to do since I didn't want to consider all of the high-frequency "noise" scattered throughout the image, such as in the trees.  Since we only cared about the border regions between the foreground and background, I then applied a Sobel edge detector in each color channel to find the first derivative edges.  The histograms for Otsu's method only considered these edge pixels. The results of the edge detection are shown in Fig.\ref{edges}
 
 \begin{figure}[H]
 \captionsetup[subfloat]{labelformat=empty}
@@ -72,7 +72,7 @@ To accomplish the segmentation, I first applied Gaussian smoothing to each color
 \end{figure}
 
 \noindent
-The normalized histogram was found in each color channel using code written for HW02, and only considered the pixels found from the Sobel edge detection.  The normalized histograms of edge pixels are shown in Fig. \ref{hist}.
+The normalized histogram was found in each color channel using code written for HW02.  The histograms only considered the pixels found from the Sobel edge detection.  The normalized histograms of edge pixels are shown in Fig. \ref{hist}.
 
 \begin{figure}[H]
 \captionsetup[subfloat]{labelformat=empty}
@@ -91,7 +91,7 @@ The normalized histogram was found in each color channel using code written for 
 \end{figure}
 
 \noindent
-It is clear from the normalized histograms that two modes exist in both the green and blue channels. This was promising for segmentation using Otsu's methods since it effectively finds the optimal boundary between two modes in a distribution. \\
+It was clear from the normalized histograms that two modes existed in both the green and blue channels. This was promising for segmentation using Otsu's methods since it effectively finds the optimal boundary between two modes in a distribution. \\
 
 \noindent
 Otsu's method was then performed in each color channel following equations 10-49 through 10-62 in the textbook.  The function I wrote, $otsu.m$ took in the rgb scene to be segmented, performed Gaussian filtering, Sobel edge detection, and Otsu's method in each channel.  It then returned a three channel image containing the binary Otsu segmentation for each color channel. The segmentation results using Otsu's Method for each color channel are shown in Fig. \ref{otsu}.
@@ -113,7 +113,7 @@ Otsu's method was then performed in each color channel following equations 10-49
 \end{figure}
 
 \noindent
-Although it was clear that the blue channel could have been used solely to extract the foreground, we wanted this to be an autonomous process.  Therefore, the channels needed to be aggregated to utilize the foreground information contained in each.  This was accomplished using a logical OR operation between each channel.  The resulting image from  the combination is shown in figure 
+Although it was clear that the blue channel could have been used solely to extract the foreground, we wanted this to be an autonomous process.  Therefore, the channels needed to be aggregated to utilize the foreground information contained in each.  This was accomplished using a logical OR operation between each channel.  The resulting image from  the combination is shown in figure \ref{combinedImage}.
 
 
 \begin{center}
@@ -121,13 +121,13 @@ Although it was clear that the blue channel could have been used solely to extra
 		\centering
 		\includegraphics[width = 0.5\textwidth]{Images/combinedImage.png}
 		\caption{Binary image formed from the logical OR operation between rgb color channels segmented with Otsu's method}
-		\label{scene}
+		\label{combinedImage}
 	\end{figure}
 \end{center}
 
 
 \noindent 
-The resulting image contained a significant amount of "noise" outside of the foreground.  To remove these spots, morphological opening (erosion then dilation) was utilized to rid the image of spots smaller than a 10x10 disk structuring element (Fig. \ref{openedImage}).
+The resulting image contained a significant amount of "noise" outside of the foreground.  To remove these spots, morphological opening (erosion then dilation) was utilized to rid the image of high areas smaller than a 10x10 disk structuring element (Fig. \ref{openedImage}).
 
 \begin{center}
 	\begin{figure}[H]
@@ -139,7 +139,7 @@ The resulting image contained a significant amount of "noise" outside of the for
 \end{center}
 
 \noindent
-This effectively removed the noisy areas outside of the foreground.  Next, morphological closing (dilation then erosion) with a 15x15 disk structuring element was performed to close the small holes within the foreground (Fig. \ref{closedImage}).  This was necessary before boundary extraction so that no false object boundaries would appear within the foreground.
+The opening effectively removed the noisy areas outside of the foreground.  Next, morphological closing (dilation then erosion) with a 15x15 disk structuring element was performed to close the small holes within the foreground (Fig. \ref{closedImage}).  This was necessary before boundary extraction so that no false object boundaries would appear within the foreground.
 
 \begin{center}
 	\begin{figure}[H]
@@ -188,11 +188,89 @@ The functions I wrote which were used for this portion of the assignment are as 
 
 
 \section*{Part II Extra Credit}
+This problem gave us two images (Fig.\ref{ex}) and asked to segment out three organs of interest: liver, kidneys, and spleen.  To accomplish this, the images were first smoothed by a Gaussian filter with $\sigma = 1.5$. 
 
+\begin{figure}[H]
+\captionsetup[subfloat]{labelformat=empty}
+\centering
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex1.png}
+} 
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex2.png}
+} 
+\caption{Extra credit images ex1 and ex2}
+\label{ex}
+\end{figure}
 
+\noindent
+Next, the normalized histograms of the images were computed and Otsu's method with two thresholds was applied (Figs. \ref{exHists} and \ref{exSegmented}). It was apparent from both the images and the normalized histograms that two thresholds were needed for organ extraction.  This was because most of the background pixels in the images were close to zero intensity, while the remaining image pixels consisted of various lighter gray values.  Since we really wanted to extract the lightest gray levels from the image, the larger threshold value between the two calculated was selected for foreground extraction.
 
+\begin{figure}[H]
+\captionsetup[subfloat]{labelformat=empty}
+\centering
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex1Hist.png}
+} 
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex2Hist.png}
+} 
+\caption{Normalized histograms of ex1 and ex2 with the corresponding thresholds chosen by Otsu's Method}
+\label{exHists}
+\end{figure}
 
+\begin{figure}[H]
+\captionsetup[subfloat]{labelformat=empty}
+\centering
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex1Segmented.png}
+} 
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex2Segmented.png}
+} 
+\caption{Foreground extraction of ex1 and ex2 with the largest corresponding thresholds chosen by Otsu's Method}
+\label{exSegmented}
+\end{figure}
 
+\noindent
+After foreground extraction with Otsu's Method, it was apparent that some of the organs were being unnecessarily grouped together.  To alleviate this problem, I applied morphological opening to break the narrow segments joining the objects.  Opening was performed with a 12x12 disk structuring element.  Results of the opening  on each image are shown in Fig. \ref{exOpened}. 
 
+\begin{figure}[H]
+\captionsetup[subfloat]{labelformat=empty}
+\centering
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex1Opened.png}
+} 
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex2Opened.png}
+} 
+\caption{Segmentation of ex1 and ex2 after performing morphological opening with a 12x12 disk structuring element.}
+\label{exOpened}
+\end{figure}
+
+\noindent
+In order to rid the image of organs that were not of interest, connected components were extracted.  A set of "ground truth" pixels were utilized for this, where a single pixel was chosen in the known region of an organ to act as a starting point for the connected components extraction method discussed  in the textbook.  As can be seen in figure \ref{exCC}, the liver, kidneys and spleen were all segmented out of the original image (the spleen was not present in the first image).  It should be noted that the liver is colored green in the first image and yellow in the second, while both of the kidneys are colored red in the first and green in the second.  The spleen is colored red in the second image and was not present in the first.
+
+\begin{figure}[H]
+\captionsetup[subfloat]{labelformat=empty}
+\centering
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex1Colored.png}
+} 
+\subfloat[]{
+  \includegraphics[width=.5\textwidth]{Images/ex2Colored.png}
+} 
+\caption{Extracted organs using connected components on segmented images}
+\label{exCC}
+\end{figure}
+
+\noindent
+The functions I wrote which were used for this portion of the assignment are as follows:
+\begin{enumerate}
+\item $mccurleyHW05.m$ - Main function which runs the organ extraction.
+\item $otsuBinary.m$ - Filtered image with a Gaussian, ran Otsu's method for two thresholds (three classes), and returned image thresholded by the greater of the two calculated thresholds.
+\item $segmentOrgans.m$ - Performed morphological opening to break  narrow connections between objects, then found the connected components in the image using examples of the three organs of interest.
+\item $connectedComp.m$ - Performed connected components extraction by starting with a single example point and continually dilating the point with a 3x3 square of ones and intersecting the result with the original image as discussed in chapter 10 of the textbook.
+\end{enumerate}
 
 \end{document}
