@@ -17,7 +17,7 @@ pcImages = {};
 
 %define discrete colors
 colorNames = ['Black','Brown','Purple','Orange','Yellow','Green','Blue','Red'];
-colors = [0 0 0; 139,69,19;255,0,255;255,165,0;255,255,0;0,255,0;0,0,255;255,0,0];
+colors = [0 0 0; 255 255 0; 0 255 0;  255 0 0];
 colors = colors./255;
 
 %plot intensity images
